@@ -14,9 +14,16 @@ app.use(express.static(__dirname + "/public"));
 io.on("connection", (socket) => {
   console.log("a new user is connected");
 
-  setInterval(() => {
-    socket.emit("server", "This message is from server");
-  }, 3000);
+//   setInterval(() => {
+//     socket.emit("server", "This message is from server");
+//   }, 3000);
+
+socket.on('msg_send', (data)=>{
+
+    console.log(data);
+    io.emit('msg_received', data);
+
+})
 
   socket.on('disconnect', ()=>{
     console.log("user disconnected")
