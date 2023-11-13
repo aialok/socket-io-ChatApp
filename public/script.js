@@ -1,31 +1,31 @@
-const socket = io();
+// const socket = io();
 
-const msgList = document.createElement('li');
-const msgBox = document.getElementById('msg-box')
-const form = document.getElementById('form');
-const btn = document.getElementById('btn')
-const ul = document.getElementById('messages')
+// const msgList = document.createElement('li');
+// const msgBox = document.getElementById('msg-box')
+// const form = document.getElementById('form');
+// const btn = document.getElementById('btn')
+// const ul = document.getElementById('messages')
 
-const username =  prompt("Enter Your Name");
+// const username =  prompt("Enter Your Name");
 
-btn.onclick = ()=>{
-    socket.emit('msg_send', {
-        msg : msgBox.value,
-        username
-    })
+// btn.onclick = ()=>{
+//     socket.emit('msg_send', {
+//         msg : msgBox.value,
+//         username
+//     })
 
-    msgBox.value="";
-}
+//     msgBox.value="";
+// }
 
 
-socket.on('msg_received', (data)=>{
-    console.log(data);
-    const li = document.createElement('li');
+// socket.on('msg_received', (data)=>{
+//     console.log(data);
+//     const li = document.createElement('li');
 
-    li.innerText= "Message By: "+ data.username +" :"+ data.msg;
+//     li.innerText= "Message By: "+ data.username +" :"+ data.msg;
 
-    ul.appendChild(li);
+//     ul.appendChild(li);
 
     
 
-})
+// })

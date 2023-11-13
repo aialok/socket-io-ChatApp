@@ -1,4 +1,4 @@
-const { Socket } = require("dgram");
+const connect = require('./config/database.js')
 const express = require("express");
 const http = require("http");
 const socketIO = require("socket.io");
@@ -8,15 +8,11 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-// Serve static files (client-side)
 app.use(express.static(__dirname + "/public"));
 
 io.on("connection", (socket) => {
   console.log("a new user is connected");
 
-//   setInterval(() => {
-//     socket.emit("server", "This message is from server");
-//   }, 3000);
 
 socket.on('msg_send', (data)=>{
 
@@ -30,8 +26,18 @@ socket.on('msg_send', (data)=>{
   })
 });
 
+app.set('view engine', 'ejs');
+
+app.get('/chat/:roomId', (req,res)=>{
+    res.render('index', {
+        username : "Alok Gupta",
+        id : req.params.roomId
+    });
+})
+
 // Start the server
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
+server.listen(PORT,async () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  await connect();
 });
