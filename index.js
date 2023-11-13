@@ -28,7 +28,7 @@ socket.on('msg_send', (data)=>{
 
 app.set('view engine', 'ejs');
 
-app.get('/chat/:roomId', (req,res)=>{
+app.get('/', (req,res)=>{
     res.render('index', {
         username : "Alok Gupta",
         id : req.params.roomId
